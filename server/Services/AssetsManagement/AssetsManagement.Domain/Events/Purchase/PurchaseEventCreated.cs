@@ -1,1 +1,0 @@
-public sealed record PurchaseEventCreated(Purchase Purchase):IDomainEvent;
