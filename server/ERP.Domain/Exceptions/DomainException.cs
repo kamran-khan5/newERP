@@ -1,4 +1,4 @@
-namespace NewERP.Domain.Exceptions;
+namespace ERP.Domain.Exceptions;
 
 public class DomainException : Exception
 {
