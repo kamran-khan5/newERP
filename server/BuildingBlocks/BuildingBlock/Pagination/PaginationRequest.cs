@@ -1,0 +1,1 @@
+public record PaginationRequest(int Pageindex = 0, int PageSize = 10);
