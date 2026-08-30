@@ -1,19 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
-using ERP.Application.Common.Models;
 
 namespace ERP.API.Controllers;
 
-public class HealthController : ApiControllerBase
+[ApiController]
+[Route("api/[controller]")]
+public class HealthController : ControllerBase
 {
     [HttpGet]
-    public ActionResult<ApiResponse<object>> GetStatus()
+    public IActionResult Get()
     {
-        return Ok(ApiResponse<object>.Success(new
-        {
-            status = "Healthy",
-            service = "ERP API",
-            timestamp = DateTime.UtcNow,
-            version = "1.0.0"
-        }, "Service is healthy"));
+        return Ok(new { status = "Healthy" });
     }
 }

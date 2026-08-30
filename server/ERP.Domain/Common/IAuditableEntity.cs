@@ -3,7 +3,7 @@ namespace ERP.Domain.Common;
 public interface IAuditableEntity
 {
     DateTime CreatedAtUtc { get; set; }
-    string? CreatedBy { get; set; }
+    Guid? CreatedBy { get; set; }
     DateTime? UpdatedAtUtc { get; set; }
-    string? UpdatedBy { get; set; }
+    Guid? UpdatedBy { get; set; }
 }

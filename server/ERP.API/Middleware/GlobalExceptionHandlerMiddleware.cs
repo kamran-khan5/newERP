@@ -57,7 +57,7 @@ public class GlobalExceptionHandlerMiddleware
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = (int)statusCode;
 
-        var response = ApiResponse<object>.Failure(message, errors);
+        var response = new { message = message, errors = errors };
         var json = JsonSerializer.Serialize(response, new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
