@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using NewERP.Application.Common.Models;
+using ERP.Application.Common.Models;
 
-namespace NewERP.API.Controllers;
+namespace ERP.API.Controllers;
 
 public class HealthController : ApiControllerBase
 {
@@ -11,7 +11,7 @@ public class HealthController : ApiControllerBase
         return Ok(ApiResponse<object>.Success(new
         {
             status = "Healthy",
-            service = "NewERP API",
+            service = "ERP API",
             timestamp = DateTime.UtcNow,
             version = "1.0.0"
         }, "Service is healthy"));

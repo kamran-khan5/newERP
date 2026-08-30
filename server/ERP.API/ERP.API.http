@@ -1,6 +1,9 @@
-@NewERP.API_HostAddress = http://localhost:5099
+@ERP.API_HostAddress = http://localhost:5099
 
-GET {{NewERP.API_HostAddress}}/weatherforecast/
+GET {{ERP.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+GET {{ERP.API_HostAddress}}/api/health/
+Accept: application/json

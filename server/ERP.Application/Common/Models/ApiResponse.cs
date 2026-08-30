@@ -1,4 +1,4 @@
-namespace NewERP.Application.Common.Models;
+namespace ERP.Application.Common.Models;
 
 public class ApiResponse<T>
 {

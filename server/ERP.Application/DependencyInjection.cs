@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NewERP.Application;
+namespace ERP.Application;
 
 public static class DependencyInjection
 {

@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NewERP.Infrastructure;
+namespace ERP.Infrastructure;
 
 public static class DependencyInjection
 {

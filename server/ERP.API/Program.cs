@@ -1,6 +1,6 @@
-using NewERP.API.Middleware;
-using NewERP.Application;
-using NewERP.Infrastructure;
+using ERP.API.Middleware;
+using ERP.Application;
+using ERP.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

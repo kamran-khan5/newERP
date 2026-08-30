@@ -1,9 +1,9 @@
 using System.Net;
 using System.Text.Json;
-using NewERP.Application.Common.Models;
-using NewERP.Domain.Exceptions;
+using ERP.Application.Common.Models;
+using ERP.Domain.Exceptions;
 
-namespace NewERP.API.Middleware;
+namespace ERP.API.Middleware;
 
 public class GlobalExceptionHandlerMiddleware
 {
