@@ -14,7 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/assets/lifecycle")({
-  head: () => ({ meta: [{ title: "Asset Lifecycle · Meridian ERP" }] }),
+  head: () => ({ meta: [{ title: "Asset Lifecycle · GDA ERP" }] }),
   component: LifecyclePage,
 });
 

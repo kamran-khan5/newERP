@@ -37,7 +37,7 @@ import {
 export const Route = createFileRoute("/assets/")({
   head: () => ({
     meta: [
-      { title: "Assets Dashboard · Meridian ERP" },
+      { title: "Assets Dashboard · GDA ERP" },
       {
         name: "description",
         content:

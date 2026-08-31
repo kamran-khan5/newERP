@@ -3,7 +3,7 @@ import { PageBody, PageHeader } from "@/components/erp/ErpLayout";
 import { Building2, Bell, Palette, KeyRound, Globe2, Users } from "lucide-react";
 
 export const Route = createFileRoute("/settings")({
-  head: () => ({ meta: [{ title: "Settings · Meridian ERP" }] }),
+  head: () => ({ meta: [{ title: "Settings · GDA ERP" }] }),
   component: SettingsPage,
 });
 

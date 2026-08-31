@@ -75,18 +75,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Meridian ERP — Enterprise Resource Planning" },
+      { title: "GDA ERP — Galiyat Development Authority" },
       {
         name: "description",
         content:
-          "Meridian is a modern, enterprise-grade ERP suite covering Assets, HR, Inventory, Procurement, Finance, CRM, Sales, Manufacturing, Projects and Payroll.",
+          "Official Integrated Enterprise Resource Planning (ERP) suite for Galiyat Development Authority (GDA), Government of Khyber Pakhtunkhwa.",
       },
-      { name: "author", content: "Meridian" },
-      { property: "og:title", content: "Meridian ERP — Enterprise Resource Planning" },
+      { name: "author", content: "Galiyat Development Authority" },
+      { property: "og:title", content: "GDA ERP — Galiyat Development Authority" },
       {
         property: "og:description",
         content:
-          "A scalable ERP designed for medium and large organizations, inspired by SAP Fiori, Microsoft Dynamics 365, and Oracle Fusion.",
+          "Public sector enterprise resource planning system covering Fixed Assets, HR, Inventory, Procurement, Finance, Projects and Municipal Services for GDA.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

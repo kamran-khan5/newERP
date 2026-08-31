@@ -1,5 +1,5 @@
-import { useRouterState, Link } from "@tanstack/react-router";
-import { Bell, Search, PanelLeft, Moon, Sun, ChevronDown, HelpCircle } from "lucide-react";
+import { useRouterState, Link, useNavigate } from "@tanstack/react-router";
+import { Bell, Search, PanelLeft, Moon, Sun, ChevronDown, HelpCircle, LogOut, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import {
@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { getCurrentUser, logout } from "@/lib/auth";
+import { toast } from "sonner";
 
 function Crumbs() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -46,10 +48,31 @@ function Crumbs() {
 export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const [dark, setDark] = useState(false);
   const [company, setCompany] = useState("GDA");
+  const navigate = useNavigate();
+  const [user, setUser] = useState(() => getCurrentUser());
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  useEffect(() => {
+    setUser(getCurrentUser());
+  }, []);
+
+  const handleSignOut = () => {
+    logout();
+    toast.success("Signed out successfully");
+    navigate({ to: "/login" });
+  };
+
+  const displayName = user?.name || "Khan";
+  const displayRole = user?.role || "Asset Manager";
+  const initials = displayName
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .substring(0, 2)
+    .toUpperCase() || "KH";
 
   return (
     <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-surface/95 px-4 backdrop-blur">
@@ -73,25 +96,6 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
             ⌘K
           </kbd>
         </div>
-
-        {/* Company selector */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="h-9 gap-2 font-medium">
-              <span className="hidden sm:inline max-w-[140px] truncate">{company}</span>
-              <ChevronDown className="h-3.5 w-3.5 opacity-60" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>Switch company</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {["GDA ", "Org 2", "ORG 3"].map((c) => (
-              <DropdownMenuItem key={c} onClick={() => setCompany(c)}>
-                {c}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
 
         <Button variant="ghost" size="icon" className="h-9 w-9" onClick={() => setDark((d) => !d)}>
           {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -131,26 +135,35 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="flex items-center gap-2 rounded-md px-1.5 py-1 hover:bg-accent">
-              <Avatar className="h-7 w-7">
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-medium">
-                  AN
+            <button className="flex items-center gap-2 rounded-md px-1.5 py-1 hover:bg-accent transition-colors">
+              <Avatar className="h-7 w-7 ring-1 ring-border">
+                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+                  {initials}
                 </AvatarFallback>
               </Avatar>
               <div className="hidden md:block text-left leading-tight">
-                <div className="text-xs font-medium">Khan</div>
-                <div className="text-[10px] text-muted-foreground">Asset Manager</div>
+                <div className="text-xs font-medium">{displayName}</div>
+                <div className="text-[10px] text-muted-foreground">{displayRole}</div>
               </div>
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-52">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuLabel>
+              <div className="font-medium text-sm">{displayName}</div>
+              <div className="text-xs text-muted-foreground font-normal">{user?.email || "admin@gda.gov.pk"}</div>
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem className="gap-2">
+              <UserIcon className="h-4 w-4 text-muted-foreground" />
+              <span>Profile Settings</span>
+            </DropdownMenuItem>
             <DropdownMenuItem>Preferences</DropdownMenuItem>
             <DropdownMenuItem>Keyboard shortcuts</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut} className="gap-2 text-destructive focus:text-destructive">
+              <LogOut className="h-4 w-4" />
+              <span>Sign out</span>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

@@ -325,7 +325,7 @@ const ASSET_CATEGORY_CARDS: {
 ];
 
 const ALL_STEPS = ["Asset Category", "Classification", "Item Details", "Purchase", "Review"];
-const DRAFT_KEY = "meridian-new-inventory-item-draft-v2";
+const DRAFT_KEY = "gda-new-inventory-item-draft-v2";
 
 export function InventoryItemWizard({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [step, setStep] = useState(0);

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { FileSpreadsheet, FileText, Download } from "lucide-react";
 
 export const Route = createFileRoute("/assets/reports")({
-  head: () => ({ meta: [{ title: "Asset Reports · Meridian ERP" }] }),
+  head: () => ({ meta: [{ title: "Asset Reports · GDA ERP" }] }),
   component: ReportsPage,
 });
 

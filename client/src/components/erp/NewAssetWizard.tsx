@@ -409,7 +409,7 @@ function getSpecFields(subtype: SubKey | null, type: SubKey | null): SpecField[]
 
 const STEPS = ["Asset Type", "Asset Details", "Financial", "Review"];
 
-const DRAFT_KEY = "meridian-new-asset-draft";
+const DRAFT_KEY = "gda-new-asset-draft";
 
 export function NewAssetWizard({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [step, setStep] = useState(0);

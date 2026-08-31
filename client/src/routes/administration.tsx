@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ComingSoon } from "@/components/erp/ComingSoon";
 export const Route = createFileRoute("/administration")({
-  head: () => ({ meta: [{ title: "Administration · Meridian ERP" }] }),
+  head: () => ({ meta: [{ title: "Administration · GDA ERP" }] }),
   component: () => (
     <ComingSoon
       module="Administration"

@@ -15,6 +15,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ProcurementRouteImport } from './routes/procurement'
 import { Route as PayrollRouteImport } from './routes/payroll'
 import { Route as ManufacturingRouteImport } from './routes/manufacturing'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as HrRouteImport } from './routes/hr'
 import { Route as FinanceRouteImport } from './routes/finance'
@@ -57,6 +58,11 @@ const PayrollRoute = PayrollRouteImport.update({
 const ManufacturingRoute = ManufacturingRouteImport.update({
   id: '/manufacturing',
   path: '/manufacturing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InventoryRoute = InventoryRouteImport.update({
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/finance': typeof FinanceRoute
   '/hr': typeof HrRoute
   '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
   '/manufacturing': typeof ManufacturingRoute
   '/payroll': typeof PayrollRoute
   '/procurement': typeof ProcurementRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/finance': typeof FinanceRoute
   '/hr': typeof HrRoute
   '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
   '/manufacturing': typeof ManufacturingRoute
   '/payroll': typeof PayrollRoute
   '/procurement': typeof ProcurementRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/finance': typeof FinanceRoute
   '/hr': typeof HrRoute
   '/inventory': typeof InventoryRoute
+  '/login': typeof LoginRoute
   '/manufacturing': typeof ManufacturingRoute
   '/payroll': typeof PayrollRoute
   '/procurement': typeof ProcurementRoute
@@ -198,6 +207,7 @@ export interface FileRouteTypes {
     | '/finance'
     | '/hr'
     | '/inventory'
+    | '/login'
     | '/manufacturing'
     | '/payroll'
     | '/procurement'
@@ -218,6 +228,7 @@ export interface FileRouteTypes {
     | '/finance'
     | '/hr'
     | '/inventory'
+    | '/login'
     | '/manufacturing'
     | '/payroll'
     | '/procurement'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/finance'
     | '/hr'
     | '/inventory'
+    | '/login'
     | '/manufacturing'
     | '/payroll'
     | '/procurement'
@@ -261,6 +273,7 @@ export interface RootRouteChildren {
   FinanceRoute: typeof FinanceRoute
   HrRoute: typeof HrRoute
   InventoryRoute: typeof InventoryRoute
+  LoginRoute: typeof LoginRoute
   ManufacturingRoute: typeof ManufacturingRoute
   PayrollRoute: typeof PayrollRoute
   ProcurementRoute: typeof ProcurementRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       path: '/manufacturing'
       fullPath: '/manufacturing'
       preLoaderRoute: typeof ManufacturingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inventory': {
@@ -446,6 +466,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinanceRoute: FinanceRoute,
   HrRoute: HrRoute,
   InventoryRoute: InventoryRoute,
+  LoginRoute: LoginRoute,
   ManufacturingRoute: ManufacturingRoute,
   PayrollRoute: PayrollRoute,
   ProcurementRoute: ProcurementRoute,

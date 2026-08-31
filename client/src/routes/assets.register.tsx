@@ -37,7 +37,7 @@ import { InventoryItemWizard } from "@/components/erp/InventoryItemWizard";
 export const Route = createFileRoute("/assets/register")({
   head: () => ({
     meta: [
-      { title: "Asset Register · Meridian ERP" },
+      { title: "Asset Register · GDA ERP" },
       {
         name: "description",
         content: "Enterprise asset register with filters, saved views and bulk actions.",

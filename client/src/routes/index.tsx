@@ -30,7 +30,7 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dashboard · Meridian ERP" },
+      { title: "Dashboard · GDA ERP" },
       {
         name: "description",
         content:

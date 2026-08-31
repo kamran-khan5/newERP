@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/assets/masters")({
-  head: () => ({ meta: [{ title: "Asset Masters · Meridian ERP" }] }),
+  head: () => ({ meta: [{ title: "Asset Masters · GDA ERP" }] }),
   component: MastersPage,
 });
 

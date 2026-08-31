@@ -24,7 +24,7 @@ export const Route = createFileRoute("/assets/register/$id")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.asset.name ?? "Asset"} · Meridian ERP` },
+      { title: `${loaderData?.asset.name ?? "Asset"} · GDA ERP` },
       { name: "description", content: `Details for asset ${loaderData?.asset.code ?? ""}.` },
     ],
   }),

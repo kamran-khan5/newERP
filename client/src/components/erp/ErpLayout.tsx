@@ -1,9 +1,16 @@
 import { useState, type ReactNode } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { AppSidebar } from "./AppSidebar";
 import { TopBar } from "./TopBar";
 
 export function ErpLayout({ children }: { children: ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  if (pathname === "/login") {
+    return <div className="min-h-screen w-full bg-background text-foreground">{children}</div>;
+  }
+
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background text-foreground">
       <AppSidebar collapsed={collapsed} />
