@@ -24,6 +24,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     // Asset Core
     public DbSet<AssetCategory> AssetCategories => Set<AssetCategory>();
     public DbSet<CategoryAttribute> CategoryAttributes => Set<CategoryAttribute>();
+    public DbSet<CategoryAttributeOption> CategoryAttributeOptions => Set<CategoryAttributeOption>();
     public DbSet<Asset> Assets => Set<Asset>();
     public DbSet<AssetAcquisition> AssetAcquisitions => Set<AssetAcquisition>();
     public DbSet<AssetAttachment> AssetAttachments => Set<AssetAttachment>();

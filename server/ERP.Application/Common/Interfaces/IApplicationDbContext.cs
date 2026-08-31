@@ -22,6 +22,7 @@ public interface IApplicationDbContext
     // Asset Core
     DbSet<AssetCategory> AssetCategories { get; }
     DbSet<CategoryAttribute> CategoryAttributes { get; }
+    DbSet<CategoryAttributeOption> CategoryAttributeOptions { get; }
     DbSet<Asset> Assets { get; }
     DbSet<AssetAcquisition> AssetAcquisitions { get; }
     DbSet<AssetAttachment> AssetAttachments { get; }

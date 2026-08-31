@@ -48,19 +48,28 @@ public class CategoryAttributeService : ICategoryAttributeService
             .Take(request.PageSize)
             .Select(e => new CategoryAttributeDto
             {
-            Id = e.Id,
-            CategoryId = e.CategoryId,
-            Code = e.Code,
-            Name = e.Name,
-            DataType = e.DataType,
-            IsRequired = e.IsRequired,
-            IsSearchable = e.IsSearchable,
-            IsFilterable = e.IsFilterable,
-            DisplayOrder = e.DisplayOrder,
-            Description = e.Description,
-            DefaultValue = e.DefaultValue,
-            ValidationRules = e.ValidationRules,
-            IsActive = e.IsActive,
+                Id = e.Id,
+                CategoryId = e.CategoryId,
+                Code = e.Code,
+                Name = e.Name,
+                DataType = e.DataType,
+                IsRequired = e.IsRequired,
+                IsSearchable = e.IsSearchable,
+                IsFilterable = e.IsFilterable,
+                DisplayOrder = e.DisplayOrder,
+                Description = e.Description,
+                DefaultValue = e.DefaultValue,
+                ValidationRules = e.ValidationRules,
+                IsActive = e.IsActive,
+                Options = e.Options.OrderBy(o => o.DisplayOrder).Select(o => new CategoryAttributeOptionDto
+                {
+                    Id = o.Id,
+                    AttributeId = o.AttributeId,
+                    Value = o.Value,
+                    Label = o.Label,
+                    DisplayOrder = o.DisplayOrder,
+                    IsActive = o.IsActive
+                }).ToList()
             })
             .ToListAsync();
 
@@ -70,6 +79,7 @@ public class CategoryAttributeService : ICategoryAttributeService
     public async Task<CategoryAttributeDto?> GetByIdAsync(long id)
     {
         var entity = await _context.CategoryAttributes
+            .Include(x => x.Options)
             .FirstOrDefaultAsync(x => x.Id == id);
 
         if (entity == null) return null;
@@ -89,6 +99,15 @@ public class CategoryAttributeService : ICategoryAttributeService
             DefaultValue = entity.DefaultValue,
             ValidationRules = entity.ValidationRules,
             IsActive = entity.IsActive,
+            Options = entity.Options.OrderBy(o => o.DisplayOrder).Select(o => new CategoryAttributeOptionDto
+            {
+                Id = o.Id,
+                AttributeId = o.AttributeId,
+                Value = o.Value,
+                Label = o.Label,
+                DisplayOrder = o.DisplayOrder,
+                IsActive = o.IsActive
+            }).ToList()
         };
     }
 

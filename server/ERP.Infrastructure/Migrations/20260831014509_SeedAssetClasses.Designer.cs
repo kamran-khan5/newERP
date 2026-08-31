@@ -3,6 +3,7 @@ using System;
 using ERP.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ERP.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260831014509_SeedAssetClasses")]
+    partial class SeedAssetClasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -728,57 +731,6 @@ namespace ERP.Infrastructure.Migrations
                     b.ToTable("CategoryAttributes");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Entities.Asset.CategoryAttributeOption", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("AttributeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreatedAtUtc")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int?>("DisplayOrder")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<DateTime?>("UpdatedAtUtc")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AttributeId");
-
-                    b.HasIndex("AttributeId", "Value")
-                        .IsUnique();
-
-                    b.ToTable("CategoryAttributeOptions", (string)null);
-                });
-
             modelBuilder.Entity("ERP.Domain.Entities.Asset.Currency", b =>
                 {
                     b.Property<string>("Code")
@@ -1143,17 +1095,6 @@ namespace ERP.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ERP.Domain.Entities.Asset.CategoryAttributeOption", b =>
-                {
-                    b.HasOne("ERP.Domain.Entities.Asset.CategoryAttribute", "Attribute")
-                        .WithMany("Options")
-                        .HasForeignKey("AttributeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Attribute");
-                });
-
             modelBuilder.Entity("ERP.Domain.Entities.Asset.Location", b =>
                 {
                     b.HasOne("ERP.Domain.Entities.Asset.Location", "ParentLocation")
@@ -1194,11 +1135,6 @@ namespace ERP.Infrastructure.Migrations
             modelBuilder.Entity("ERP.Domain.Entities.Asset.AssetStatus", b =>
                 {
                     b.Navigation("Assets");
-                });
-
-            modelBuilder.Entity("ERP.Domain.Entities.Asset.CategoryAttribute", b =>
-                {
-                    b.Navigation("Options");
                 });
 
             modelBuilder.Entity("ERP.Domain.Entities.Asset.Location", b =>

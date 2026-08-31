@@ -11,10 +11,13 @@ public enum OwnershipType
 public enum AttributeDataType
 {
     Text,
-    Number,
+    Integer,
+    Decimal,
     Boolean,
     Date,
-    Datetime,
+    DateTime,
+    Select,
+    MultiSelect,
     Json
 }
 

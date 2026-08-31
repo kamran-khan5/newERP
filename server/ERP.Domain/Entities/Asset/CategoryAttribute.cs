@@ -26,6 +26,8 @@ public class CategoryAttribute : BaseEntity<long>, IAuditableEntity
     
     public bool IsActive { get; set; } = true;
     
+    public ICollection<CategoryAttributeOption> Options { get; set; } = new List<CategoryAttributeOption>();
+    
     public Guid? CreatedBy { get; set; }
     public Guid? UpdatedBy { get; set; }
 }

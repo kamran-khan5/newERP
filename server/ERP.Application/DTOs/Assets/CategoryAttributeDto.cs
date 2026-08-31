@@ -18,4 +18,5 @@ public class CategoryAttributeDto
     public string? DefaultValue { get; set; }
     public string? ValidationRules { get; set; }
     public bool IsActive { get; set; }
+    public System.Collections.Generic.List<CategoryAttributeOptionDto> Options { get; set; } = new();
 }

@@ -52,12 +52,12 @@ const CATEGORY_CARDS: {
   label: string;
   icon: React.ComponentType<{ className?: string }>;
 }[] = [
-  { key: "all", label: "All Assets", icon: Boxes },
-  { key: "physical", label: "Physical Assets", icon: Building2 },
-  { key: "inventory", label: "Inventory Assets", icon: Package },
-  { key: "financial", label: "Financial Assets", icon: Landmark },
-  { key: "intangible", label: "Intangible Assets", icon: FileDigit },
-];
+    { key: "all", label: "All Assets", icon: Boxes },
+    { key: "physical", label: "Physical Assets", icon: Building2 },
+    { key: "inventory", label: "Inventory Assets", icon: Package },
+    { key: "financial", label: "Financial Assets", icon: Landmark },
+    { key: "intangible", label: "Intangible Assets", icon: FileDigit },
+  ];
 
 function StatusBadge({ status }: { status: string }) {
   const tone =
