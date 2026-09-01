@@ -2,6 +2,7 @@ using Scalar.AspNetCore;
 using ERP.API.Middleware;
 using ERP.Application;
 using ERP.Infrastructure;
+using ERP.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -72,7 +73,23 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-// 5. Global Exception Handler Middleware
+// 5. Database Initialization & Seeding
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    try
+    {
+        await DbInitializer.InitializeAsync(context);
+        logger.LogInformation("Database initialized and seeded successfully.");
+    }
+    catch (Exception ex)
+    {
+        logger.LogWarning(ex, "Could not initialize/seed database on startup. Verify database connectivity.");
+    }
+}
+
+// 6. Global Exception Handler Middleware
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 // 6. HTTP request pipeline
