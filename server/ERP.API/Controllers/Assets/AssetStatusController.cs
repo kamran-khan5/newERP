@@ -7,9 +7,10 @@ using ERP.Application.Services.Assets;
 
 namespace ERP.API.Controllers.Assets;
 
-[Authorize]
+
 [ApiController]
 [Route("api/assets/[controller]")]
+[AllowAnonymous]
 public class AssetStatusController : ControllerBase
 {
     private readonly IAssetStatusService _service;

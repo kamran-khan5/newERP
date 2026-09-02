@@ -31,8 +31,8 @@ public class GlobalExceptionHandlerMiddleware
 
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var statusCode = HttpStatusCode.InternalServerError;
-        var message = "An unexpected error occurred.";
+        HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
+        string? message = "An unexpected error occurred.";
         var errors = new List<string>();
 
         switch (exception)

@@ -10,7 +10,7 @@ namespace ERP.API.Controllers.Assets;
 
 [ApiController]
 [Route("api/assets/[controller]")]
-[Authorize]
+[AllowAnonymous]
 public class AssetLifecycleEventsController : ControllerBase
 {
     private readonly IAssetLifecycleEventService _service;

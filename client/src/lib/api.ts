@@ -192,6 +192,91 @@ export interface CreateAssetClassDto {
   isActive?: boolean;
 }
 
+export interface UpdateAssetClassDto extends CreateAssetClassDto {
+  isActive: boolean;
+}
+
+export interface UpdateAssetCategoryDto extends CreateAssetCategoryDto {
+  isActive: boolean;
+}
+
+export interface CreateCategoryAttributeDto {
+  categoryId: number;
+  code: string;
+  name: string;
+  dataType: number;
+  isRequired: boolean;
+  isSearchable: boolean;
+  isFilterable: boolean;
+  displayOrder?: number | null;
+  description?: string | null;
+  defaultValue?: string | null;
+  validationRules?: string | null;
+  isActive?: boolean;
+}
+
+export interface UpdateCategoryAttributeDto extends CreateCategoryAttributeDto {
+  isActive: boolean;
+}
+
+export interface CreateCategoryAttributeOptionDto {
+  attributeId: number;
+  value: string;
+  label: string;
+  displayOrder?: number | null;
+  isActive?: boolean;
+}
+
+export interface UpdateCategoryAttributeOptionDto extends CreateCategoryAttributeOptionDto {
+  isActive: boolean;
+}
+
+export interface CreateAssetStatusDto {
+  code: string;
+  name: string;
+  description?: string | null;
+  isActive?: boolean;
+}
+
+export interface UpdateAssetStatusDto extends CreateAssetStatusDto {
+  isActive: boolean;
+}
+
+export interface UpdateLocationDto extends CreateLocationDto {
+  isActive: boolean;
+}
+
+export interface CreateCurrencyDto {
+  code: string;
+  name: string;
+  symbol?: string | null;
+}
+
+export interface UpdateCurrencyDto extends CreateCurrencyDto {}
+
+export interface CreateDepreciationMethodDto {
+  code: string;
+  name: string;
+  description?: string | null;
+  isActive?: boolean;
+}
+
+export interface UpdateDepreciationMethodDto extends CreateDepreciationMethodDto {
+  isActive: boolean;
+}
+
+export interface CreateLifecycleEventTypeDto {
+  stage?: string | null;
+  code: string;
+  name: string;
+  description?: string | null;
+  isActive?: boolean;
+}
+
+export interface UpdateLifecycleEventTypeDto extends CreateLifecycleEventTypeDto {
+  isActive: boolean;
+}
+
 // ============================================================================
 // ENUM MAPPINGS
 // ============================================================================
@@ -332,6 +417,122 @@ export const api = {
       method: "POST",
       body: JSON.stringify(dto),
     });
+  },
+
+  async getAssetClassById(id: number): Promise<AssetClassDto> {
+    return apiFetch<AssetClassDto>(`/api/assets/AssetClass/${id}`);
+  },
+
+  async updateAssetClass(id: number, dto: UpdateAssetClassDto): Promise<void> {
+    return apiFetch<void>(`/api/assets/AssetClass/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteAssetClass(id: number): Promise<void> {
+    return apiFetch<void>(`/api/assets/AssetClass/${id}`, { method: "DELETE" });
+  },
+
+  async getAssetCategoryById(id: number): Promise<AssetCategoryDto> {
+    return apiFetch<AssetCategoryDto>(`/api/AssetCategories/${id}`);
+  },
+
+  async updateAssetCategory(id: number, dto: UpdateAssetCategoryDto): Promise<AssetCategoryDto> {
+    return apiFetch<AssetCategoryDto>(`/api/AssetCategories/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteAssetCategory(id: number): Promise<void> {
+    return apiFetch<void>(`/api/AssetCategories/${id}`, { method: "DELETE" });
+  },
+
+  async getCategoryAttributeById(id: number): Promise<CategoryAttributeDto> {
+    return apiFetch<CategoryAttributeDto>(`/api/CategoryAttributes/${id}`);
+  },
+
+  async createCategoryAttribute(dto: CreateCategoryAttributeDto): Promise<CategoryAttributeDto> {
+    return apiFetch<CategoryAttributeDto>("/api/CategoryAttributes", { method: "POST", body: JSON.stringify(dto) });
+  },
+
+  async updateCategoryAttribute(id: number, dto: UpdateCategoryAttributeDto): Promise<CategoryAttributeDto> {
+    return apiFetch<CategoryAttributeDto>(`/api/CategoryAttributes/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteCategoryAttribute(id: number): Promise<void> {
+    return apiFetch<void>(`/api/CategoryAttributes/${id}`, { method: "DELETE" });
+  },
+
+  async getCategoryAttributeOptionById(id: number): Promise<CategoryAttributeOptionDto> {
+    return apiFetch<CategoryAttributeOptionDto>(`/api/CategoryAttributeOptions/${id}`);
+  },
+
+  async createCategoryAttributeOption(dto: CreateCategoryAttributeOptionDto): Promise<CategoryAttributeOptionDto> {
+    return apiFetch<CategoryAttributeOptionDto>("/api/CategoryAttributeOptions", { method: "POST", body: JSON.stringify(dto) });
+  },
+
+  async updateCategoryAttributeOption(id: number, dto: UpdateCategoryAttributeOptionDto): Promise<CategoryAttributeOptionDto> {
+    return apiFetch<CategoryAttributeOptionDto>(`/api/CategoryAttributeOptions/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteCategoryAttributeOption(id: number): Promise<void> {
+    return apiFetch<void>(`/api/CategoryAttributeOptions/${id}`, { method: "DELETE" });
+  },
+
+  async getAssetStatusById(id: number): Promise<AssetStatusDto> {
+    return apiFetch<AssetStatusDto>(`/api/assets/AssetStatus/${id}`);
+  },
+
+  async createAssetStatus(dto: CreateAssetStatusDto): Promise<AssetStatusDto> {
+    return apiFetch<AssetStatusDto>("/api/assets/AssetStatus", { method: "POST", body: JSON.stringify(dto) });
+  },
+
+  async updateAssetStatus(id: number, dto: UpdateAssetStatusDto): Promise<void> {
+    return apiFetch<void>(`/api/assets/AssetStatus/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteAssetStatus(id: number): Promise<void> {
+    return apiFetch<void>(`/api/assets/AssetStatus/${id}`, { method: "DELETE" });
+  },
+
+  async updateLocation(id: number, dto: UpdateLocationDto): Promise<void> {
+    return apiFetch<void>(`/api/assets/Location/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteLocation(id: number): Promise<void> {
+    return apiFetch<void>(`/api/assets/Location/${id}`, { method: "DELETE" });
+  },
+
+  async createCurrency(dto: CreateCurrencyDto): Promise<CurrencyDto> {
+    return apiFetch<CurrencyDto>("/api/assets/Currency", { method: "POST", body: JSON.stringify(dto) });
+  },
+
+  async updateCurrency(id: string, dto: UpdateCurrencyDto): Promise<void> {
+    return apiFetch<void>(`/api/assets/Currency/${encodeURIComponent(id)}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteCurrency(id: string): Promise<void> {
+    return apiFetch<void>(`/api/assets/Currency/${encodeURIComponent(id)}`, { method: "DELETE" });
+  },
+
+  async createDepreciationMethod(dto: CreateDepreciationMethodDto): Promise<DepreciationMethodDto> {
+    return apiFetch<DepreciationMethodDto>("/api/assets/DepreciationMethod", { method: "POST", body: JSON.stringify(dto) });
+  },
+
+  async updateDepreciationMethod(id: number, dto: UpdateDepreciationMethodDto): Promise<void> {
+    return apiFetch<void>(`/api/assets/DepreciationMethod/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteDepreciationMethod(id: number): Promise<void> {
+    return apiFetch<void>(`/api/assets/DepreciationMethod/${id}`, { method: "DELETE" });
+  },
+
+  async createLifecycleEventType(dto: CreateLifecycleEventTypeDto): Promise<LifecycleEventTypeDto> {
+    return apiFetch<LifecycleEventTypeDto>("/api/assets/LifecycleEventType", { method: "POST", body: JSON.stringify(dto) });
+  },
+
+  async updateLifecycleEventType(id: number, dto: UpdateLifecycleEventTypeDto): Promise<void> {
+    return apiFetch<void>(`/api/assets/LifecycleEventType/${id}`, { method: "PUT", body: JSON.stringify(dto) });
+  },
+
+  async deleteLifecycleEventType(id: number): Promise<void> {
+    return apiFetch<void>(`/api/assets/LifecycleEventType/${id}`, { method: "DELETE" });
   },
 
   // Assets

@@ -10,7 +10,7 @@ namespace ERP.API.Controllers.Assets;
 
 [ApiController]
 [Route("api/assets/[controller]")]
-[Authorize]
+[AllowAnonymous]
 public class AssetDepreciationEntrysController : ControllerBase
 {
     private readonly IAssetDepreciationEntryService _service;

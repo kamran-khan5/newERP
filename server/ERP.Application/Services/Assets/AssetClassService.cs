@@ -19,7 +19,7 @@ public class AssetClassService : IAssetClassService
 
     public async Task<PagedResponse<AssetClassDto>> GetPagedAsync(PagedRequest request)
     {
-        var query = _context.AssetClasses.AsQueryable();
+        IQueryable<AssetClass>? query = _context.AssetClasses.AsQueryable();
 
         if (!string.IsNullOrWhiteSpace(request.SearchTerm))
         {
@@ -27,7 +27,7 @@ public class AssetClassService : IAssetClassService
                 x.Name.Contains(request.SearchTerm));
         }
 
-        var totalCount = await query.CountAsync();
+        int totalCount = await query.CountAsync();
 
         if (!string.IsNullOrWhiteSpace(request.SortBy))
         {
@@ -50,7 +50,7 @@ public class AssetClassService : IAssetClassService
             query = query.OrderBy(x => x.Id);
         }
 
-        var items = await query
+        List<AssetClassDto>? items = await query
             .Skip((request.Page - 1) * request.PageSize)
             .Take(request.PageSize)
             .Select(x => new AssetClassDto
@@ -106,7 +106,7 @@ public class AssetClassService : IAssetClassService
 
     public async Task<bool> UpdateAsync(short id, UpdateAssetClassDto dto)
     {
-        var entity = await _context.AssetClasses.FindAsync(id);
+        AssetClass? entity = await _context.AssetClasses.FindAsync(id);
         if (entity == null) return false;
 
         entity.Code = dto.Code;
@@ -120,7 +120,7 @@ public class AssetClassService : IAssetClassService
 
     public async Task<bool> DeleteAsync(short id)
     {
-        var entity = await _context.AssetClasses.FindAsync(id);
+        AssetClass? entity = await _context.AssetClasses.FindAsync(id);
         if (entity == null) return false;
 
         _context.AssetClasses.Remove(entity);

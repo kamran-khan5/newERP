@@ -7,9 +7,10 @@ using ERP.Application.Services.Assets;
 
 namespace ERP.API.Controllers.Assets;
 
-[Authorize]
+
 [ApiController]
 [Route("api/assets/[controller]")]
+[AllowAnonymous]
 public class AssetClassController : ControllerBase
 {
     private readonly IAssetClassService _service;
@@ -22,14 +23,14 @@ public class AssetClassController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] PagedRequest request)
     {
-        var result = await _service.GetPagedAsync(request);
+        PagedResponse<AssetClassDto>? result = await _service.GetPagedAsync(request);
         return Ok(result);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(short id)
     {
-        var result = await _service.GetByIdAsync(id);
+        AssetClassDto? result = await _service.GetByIdAsync(id);
         if (result == null) return NotFound();
         
         return Ok(result);
@@ -38,14 +39,14 @@ public class AssetClassController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateAssetClassDto dto)
     {
-        var result = await _service.CreateAsync(dto);
+        AssetClassDto? result = await _service.CreateAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(short id, UpdateAssetClassDto dto)
     {
-        var success = await _service.UpdateAsync(id, dto);
+        bool success = await _service.UpdateAsync(id, dto);
         if (!success) return NotFound();
         
         return NoContent();
@@ -54,7 +55,7 @@ public class AssetClassController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(short id)
     {
-        var success = await _service.DeleteAsync(id);
+        bool success = await _service.DeleteAsync(id);
         if (!success) return NotFound();
         
         return NoContent();

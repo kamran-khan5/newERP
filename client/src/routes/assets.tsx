@@ -5,7 +5,7 @@ const TABS = [
   { label: "Dashboard", to: "/assets" },
   { label: "Asset Register", to: "/assets/register" },
   { label: "Asset Lifecycle", to: "/assets/lifecycle" },
-  { label: "Asset Masters", to: "/assets/masters" },
+  { label: "Configuration", to: "/assets/configuration" },
   { label: "Reports", to: "/assets/reports" },
 ];
 

@@ -7,7 +7,7 @@ using ERP.Application.Services.Assets;
 
 namespace ERP.API.Controllers.Assets;
 
-[Authorize]
+[AllowAnonymous]
 [ApiController]
 [Route("api/assets/[controller]")]
 public class CurrencyController : ControllerBase

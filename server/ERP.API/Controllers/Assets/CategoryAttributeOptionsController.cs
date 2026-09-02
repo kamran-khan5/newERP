@@ -8,9 +8,10 @@ using ERP.Application.Services.Assets;
 
 namespace ERP.API.Controllers.Assets;
 
-[Authorize]
+
 [ApiController]
 [Route("api/[controller]")]
+[AllowAnonymous]
 public class CategoryAttributeOptionsController : ControllerBase
 {
     private readonly ICategoryAttributeOptionService _service;

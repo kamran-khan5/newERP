@@ -1,16 +1,17 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using ERP.Application.Common.Models;
 using ERP.Application.DTOs.Assets;
 using ERP.Application.Services.Assets;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ERP.API.Controllers.Assets;
 
-[Authorize]
+
 [ApiController]
 [Route("api/[controller]")]
+[AllowAnonymous]
 public class AssetCategoriesController : ControllerBase
 {
     private readonly IAssetCategoryService _service;

@@ -28,6 +28,7 @@ import { Route as AssetsReportsRouteImport } from './routes/assets.reports'
 import { Route as AssetsRegisterRouteImport } from './routes/assets.register'
 import { Route as AssetsMastersRouteImport } from './routes/assets.masters'
 import { Route as AssetsLifecycleRouteImport } from './routes/assets.lifecycle'
+import { Route as AssetsConfigurationRouteImport } from './routes/assets.configuration'
 import { Route as AssetsRegisterIdRouteImport } from './routes/assets.register.$id'
 
 const SettingsRoute = SettingsRouteImport.update({
@@ -125,6 +126,11 @@ const AssetsLifecycleRoute = AssetsLifecycleRouteImport.update({
   path: '/lifecycle',
   getParentRoute: () => AssetsRoute,
 } as any)
+const AssetsConfigurationRoute = AssetsConfigurationRouteImport.update({
+  id: '/configuration',
+  path: '/configuration',
+  getParentRoute: () => AssetsRoute,
+} as any)
 const AssetsRegisterIdRoute = AssetsRegisterIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -146,6 +152,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sales': typeof SalesRoute
   '/settings': typeof SettingsRoute
+  '/assets/configuration': typeof AssetsConfigurationRoute
   '/assets/lifecycle': typeof AssetsLifecycleRoute
   '/assets/masters': typeof AssetsMastersRoute
   '/assets/register': typeof AssetsRegisterRouteWithChildren
@@ -167,6 +174,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sales': typeof SalesRoute
   '/settings': typeof SettingsRoute
+  '/assets/configuration': typeof AssetsConfigurationRoute
   '/assets/lifecycle': typeof AssetsLifecycleRoute
   '/assets/masters': typeof AssetsMastersRoute
   '/assets/register': typeof AssetsRegisterRouteWithChildren
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sales': typeof SalesRoute
   '/settings': typeof SettingsRoute
+  '/assets/configuration': typeof AssetsConfigurationRoute
   '/assets/lifecycle': typeof AssetsLifecycleRoute
   '/assets/masters': typeof AssetsMastersRoute
   '/assets/register': typeof AssetsRegisterRouteWithChildren
@@ -214,6 +223,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sales'
     | '/settings'
+    | '/assets/configuration'
     | '/assets/lifecycle'
     | '/assets/masters'
     | '/assets/register'
@@ -235,6 +245,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sales'
     | '/settings'
+    | '/assets/configuration'
     | '/assets/lifecycle'
     | '/assets/masters'
     | '/assets/register'
@@ -257,6 +268,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sales'
     | '/settings'
+    | '/assets/configuration'
     | '/assets/lifecycle'
     | '/assets/masters'
     | '/assets/register'
@@ -417,6 +429,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssetsLifecycleRouteImport
       parentRoute: typeof AssetsRoute
     }
+    '/assets/configuration': {
+      id: '/assets/configuration'
+      path: '/configuration'
+      fullPath: '/assets/configuration'
+      preLoaderRoute: typeof AssetsConfigurationRouteImport
+      parentRoute: typeof AssetsRoute
+    }
     '/assets/register/$id': {
       id: '/assets/register/$id'
       path: '/$id'
@@ -440,6 +459,7 @@ const AssetsRegisterRouteWithChildren = AssetsRegisterRoute._addFileChildren(
 )
 
 interface AssetsRouteChildren {
+  AssetsConfigurationRoute: typeof AssetsConfigurationRoute
   AssetsLifecycleRoute: typeof AssetsLifecycleRoute
   AssetsMastersRoute: typeof AssetsMastersRoute
   AssetsRegisterRoute: typeof AssetsRegisterRouteWithChildren
@@ -448,6 +468,7 @@ interface AssetsRouteChildren {
 }
 
 const AssetsRouteChildren: AssetsRouteChildren = {
+  AssetsConfigurationRoute: AssetsConfigurationRoute,
   AssetsLifecycleRoute: AssetsLifecycleRoute,
   AssetsMastersRoute: AssetsMastersRoute,
   AssetsRegisterRoute: AssetsRegisterRouteWithChildren,

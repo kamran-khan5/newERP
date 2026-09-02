@@ -8,7 +8,7 @@ using ERP.Application.Services.Assets;
 
 namespace ERP.API.Controllers.Assets;
 
-[Authorize]
+[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
 public class AssetAttachmentsController : ControllerBase
